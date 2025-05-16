@@ -18,6 +18,7 @@ jobs:
         with:
           node-version: 22
           cache: "yarn"
+          cache-dependency-path: transacao/yarn.lock
 
       - name: 📦 Instalar dependências
         working-directory: ./transacao
