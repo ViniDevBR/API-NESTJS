@@ -33,6 +33,14 @@ jobs:
           echo 'DATABASE_URL="file:./dev.db"' >> .env
         working-directory: ./transacao
 
+      - name: 🗃️ Criar banco SQLite vazio
+        run: touch ./dev.db
+        working-directory: ./transacao
+
+      - name: 🗄️ Rodar migrations
+        run: npx prisma migrate deploy
+        working-directory: ./transacao
+
       - name: 🧪 Rodar Testes E2E
         working-directory: ./transacao
         run: yarn test:e2e
