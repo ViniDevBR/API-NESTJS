@@ -24,6 +24,10 @@ jobs:
         working-directory: ./transacao
         run: yarn install --frozen-lockfile
 
+      - name: 🗂️ Criar diretório logs
+        run: mkdir -p logs
+        working-directory: ./transacao
+
       - name: 🛠️ Criar arquivo .env
         run: |
           echo "PORT=3000" > .env
