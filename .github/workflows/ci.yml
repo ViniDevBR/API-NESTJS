@@ -24,6 +24,15 @@ jobs:
         working-directory: ./transacao
         run: yarn install --frozen-lockfile
 
+      - name: 🛠️ Criar arquivo .env
+        run: |
+          echo "PORT=3000" > .env
+          echo "LOG_INFO_PATH=${{ secrets.LOG_INFO_PATH }}" >> .env
+          echo "LOG_ERROR_PATH=${{ secrets.LOG_ERROR_PATH }}" >> .env
+          echo "LOG_DEBUG_PATH=${{ secrets.LOG_DEBUG_PATH }}" >> .env
+          echo 'DATABASE_URL="file:./dev.db"' >> .env
+        working-directory: ./transacao
+
       - name: 🧪 Rodar Testes E2E
         working-directory: ./transacao
         run: yarn test:e2e
