@@ -13,6 +13,7 @@
 <!-- - ci: mudança no processo de integração -->
 - chore: mudança ou adição de código que não são novas funcionalidade
 - docs: mudança ou adição de alguma documentação
+- test: relacionado a testes
 
 ## Configuração inicial
 
