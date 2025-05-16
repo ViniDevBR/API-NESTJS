@@ -30,12 +30,16 @@ jobs:
           echo "LOG_INFO_PATH=${{ secrets.LOG_INFO_PATH }}" >> .env
           echo "LOG_ERROR_PATH=${{ secrets.LOG_ERROR_PATH }}" >> .env
           echo "LOG_DEBUG_PATH=${{ secrets.LOG_DEBUG_PATH }}" >> .env
-          echo 'DATABASE_URL="file:./dev.db"' >> .env
+          echo "DATABASE_URL=file:./dev.db" >> .env
         working-directory: ./transacao
 
-      - name: 🗃️ Criar banco SQLite vazio
-        run: touch ./dev.db
+      - name: 🧬 Gerar Prisma Client
         working-directory: ./transacao
+        run: yarn prisma generate
+
+      - name: 🧱 Rodar migrations
+        working-directory: ./transacao
+        run: yarn prisma migrate deploy
 
       - name: 🗄️ Rodar migrations
         run: npx prisma migrate deploy

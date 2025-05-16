@@ -8,6 +8,5 @@
     "^.+\\.(t|j)s$": "ts-jest"
   },
   "coverageDirectory": "./coverage",
-  "testEnvironment": "node",
-  "setupFiles": ["./setup.ts"]
+  "testEnvironment": "node"
 }
