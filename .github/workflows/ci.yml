@@ -1,0 +1,36 @@
+name: CI - Testes e Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout do código
+        uses: actions/checkout@v3
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "yarn"
+
+      - name: 📦 Instalar dependências
+        working-directory: ./transacao
+        run: yarn install --frozen-lockfile
+
+      - name: 🧪 Rodar Testes E2E
+        working-directory: ./transacao
+        run: yarn test:e2e
+
+      - name: 📈 Rodar Coverage
+        working-directory: ./transacao
+        run: yarn test:cov
+
+      - name: 🏗️ Build da aplicação
+        working-directory: ./transacao
+        run: yarn build
