@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: transacao-app
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./transacao/.env
+    command: node dist/main
